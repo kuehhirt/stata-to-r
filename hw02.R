@@ -1,5 +1,5 @@
 # =============================================================================
-#   File name:    hw02sol.do
+# File name:    hw02sol.do
 # Task:         Homework 2 solution
 # Project:      Research seminar pt. 1
 # Author:       Michael Kuehhirt
@@ -7,7 +7,7 @@
 
    
 # ----------------------------------------------------------------------------- 
-#   About this do-file:
+#   About this script:
 #   #1 Demonstrates how to define global variables 
 #   #2 Demonstrates how to check global variables
 #   #3 Demonstrates how to use global variables
@@ -56,7 +56,7 @@ ls()                      # lists all variables in the global environment
 print(iamaglobal)         # displays content of first global
 print(iamanotherglobal)   # displays content of second global
 print(iamaglobaltoo)      # displays content of third global
-print(sentenceglobal)     # displays complete sentence 
+
 
 # -----------------------------------------------------------------------------
 # #3 Use variables
@@ -107,6 +107,6 @@ name <- paste(fname ,lname )                           # c.
 fname                                                  # d.
 name                                                   # e.
 print(paste("I am",name))                              # f.
-print(paste("I am",fname, lname, ".") )                # g.
+print(paste("I am",fname, lname) )                     # g.
 wdir                                                   # h.
 plots                                                  # i.

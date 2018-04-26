@@ -34,13 +34,13 @@
 # putting a '#' in front of each line.
 # -----------------------------------------------------------------------------
 
-# install
-# install.packages("readstata13")   # read Stata 13 or newer into R 
-# install.packages("foreign")     # read Stata 12 or older
+# install (Gibt es eine Option, die die Install. ausführt, ohne dass man bestätigen muss?)
+ install.packages("readstata13")   # read Stata 13 or newer into R
+ install.packages("foreign")     # read Stata 12 or older
 
-# load
-# library(readstata13)
-# library(foreign)
+# load   
+ library(readstata13)
+ library(foreign)
 
 #------------------------------------------------------------------------------
 # 2) Basic R specifications 
@@ -65,7 +65,8 @@ rm(list=ls(all=TRUE))             # remove all defined variables
 # -----------------------------------------------------------------------------
 
 # working directory (paste the path to your own wdir between the " " below)
-wdir <- file.path("H:","R","wdir")                  
+# wdir <- file.path("H:","R","wdir") # Maike's path
+wdir <- file.path("/Users","wmb222","Documents","stata-to-r") # Michael's path
 
 # file.path contructs the path by concantenating the elements in brackets.
 # (will be correct no matter which operating system you are using) 
@@ -73,21 +74,18 @@ wdir <- file.path("H:","R","wdir")
 odata <- file.path(wdir, "01source", "origdata")  # path to original data 
 pdata <- file.path(wdir,"02process", "procdata")  # path to processed data
 code <- file.path(wdir, "02process", "code")      # path to R scripts
-cbook <- file.path("wdir", "03docu", "codebooks")   # path to codebooks 
-plots <- file.path("wdir", "03docu", "figures")     # path to figures
-texts <- file.path("wdir", "03docu", "tables")      # path to logfiles and tables
+cbook <- file.path(wdir, "03docu", "codebooks")   # path to codebooks 
+plots <- file.path(wdir, "03docu", "figures")     # path to figures
+texts <- file.path(wdir, "03docu", "tables")      # path to logfiles and tables
 
 # -----------------------------------------------------------------------------
 # 4) Execute task-specific scripts in the correct order
-# Once these scripts are completed you can remove the * in the front. Running
+# Once these scripts are completed you can remove the  in the front. Running
 # this master script will then also execute the scripts below in the order
 # they are listed. Try it for the first one, when you're finished with 
 # Homework 2!
 # -----------------------------------------------------------------------------
 
-#set working directory
-setwd(wdir)
-getwd()
 source(file.path(code, "hw02.R"))      # homework 2
 # source(file.path(code, "hw03.R"))      # homework 3
 # source(file.path(code, "hw04.R"))     # homework 4
