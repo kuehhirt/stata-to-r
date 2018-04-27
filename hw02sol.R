@@ -100,5 +100,13 @@ print(paste(iamaglobal, iamanotherglobal, "another sentence."))
 # h. Display the path for your working directory!
 # i. Display the path to your figures folder!
 # -----------------------------------------------------------------------------
-
-
+# 
+fname <- "Michael"                                     # a.
+lname <- "Kuehhirt"                                    # b.
+name <- paste(fname ,lname )                           # c.
+fname                                                  # d.
+name                                                   # e.
+print(paste("I am",name))                              # f.
+print(paste("I am",fname, lname) )                     # g.
+wdir                                                   # h.
+plots                                                  # i.
