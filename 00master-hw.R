@@ -37,6 +37,8 @@
 # putting a '#' in front of each line.
 # -----------------------------------------------------------------------------
 
+R.Version()
+
 # install
 install.packages("readstata13")     # read Stata 13 or newer into R 
 install.packages("foreign")         # read Stata 12 or older
@@ -45,7 +47,9 @@ install.packages('ggpubr')          # rearragenge ggplots
 install.packages('GGally')          # matrix plot
 install.packages("data.table")      # hmisc needs it
 install.packages("Hmisc")           # lag operator
-install.packages("stringr")
+install.packages("stringr")         # 
+install.packages("pastecs")         # describtion of data
+# install.packages("dplyr")           # recode data
 # load
 library(readstata13)
 library(foreign)
@@ -55,7 +59,8 @@ library(GGally)
 library(ggplot2)
 library(data.table)
 library(Hmisc)        
-
+library(pastecs)
+# library(dplyr)
 #------------------------------------------------------------------------------
 # 2) Basic R specifications 
 # -----------------------------------------------------------------------------
@@ -100,8 +105,8 @@ texts <- file.path(wdir, "03docu", "tables")      # path to logfiles and tables
 # -----------------------------------------------------------------------------
 
 setwd(wdir)
-source(file.path(code, "hw02.R"))         # homework 2
-source(file.path(code, "hw03.R"))         # homework 3
+# source(file.path(code, "hw02.R"))         # homework 2
+# source(file.path(code, "hw03.R"))         # homework 3
 # source(file.path(code, "hw04.R"))       # homework 4
 # source(file.path(code, "hw05.R"))       # homework 5
 # source(file.path(code, "hw06.R"))       # homework 6
