@@ -1,8 +1,8 @@
 /*==============================================================================
-File name:    hw06.do
-Task:         Homework 6
+File name:    hw06sol.do
+Task:         Homework 6 solution
 Project:      Research seminar pt. 1
-Author:       YOURNAMEHERE                                                                               
+Author:       Michael Kuehhirt                                                                              
 ==============================================================================*/
 
 
@@ -18,7 +18,7 @@ About this dofile:
 Notes:
 ------------------------------------------------------------------------------*/
 
-version 12.0      // Stata version control
+version 12      // Stata version control
 
 
 /*------------------------------------------------------------------------------
@@ -28,6 +28,7 @@ Tasks below
 ------------------------------------------------------------------------------*/
 
 *a. Load the dataset piat.dta
+use "${pdata}/piat.dta", clear  
 
 
 * merge other yearly info from bpi.dta
@@ -37,8 +38,16 @@ merge 1:1 cpubid year using "${pdata}/bpi.dta" ///
 
 	
 *b. Merge all information from the datasets cage, temper, and resid
+merge 1:1 cpubid year using "${pdata}/cage.dta" ///
+    , keep(1 3) nogen 
+	
+merge 1:1 cpubid year using "${pdata}/temper.dta" ///
+    , keep(1 3) nogen 	
 
+merge 1:1 cpubid year using "${pdata}/resid.dta" ///
+    , keep(1 3) nogen 	
 
+	
 * merge some time-constant info from basic.dta
 sort cpubid
 merge m:1 cpubid using "${pdata}/basic.dta" /// 
@@ -55,26 +64,28 @@ Tasks below
 * rename mother ID to caseid (so there is a common ID in master and using data
 rename mpubid caseid
 
+
 * time-constant information	  
 sort caseid
 merge m:1 caseid using "${pdata}/abasic.dta" /// time-constant info
     , keep(1 3) nogen 
+
 	
-
-
 * time-varying information at t
 sort caseid year
 merge m:1 caseid year using "${pdata}/myearly.dta", keep(1 3) nogen 
 
 
 *a. Merge time-varying information at t from hhmem.dta
+merge m:1 caseid year using "${pdata}/hhmem.dta", keep(1 3) nogen 
 
 
 * rename the merged variables to indicate they contain info at t
 for any numspptr relspptr marstat hgc hgcrev: rename X X_t
-
-
-*b. Rename the variables merge from hhmem.dta to *_t
+		
+		
+*b. Rename the variables merge from hhmem.dta to *_t		
+for any spousage spousgen spousgrade partage partgen partgrade: rename X X_t
 
 
 * rename original year to generate new year variable=year of child's birth (+1)
@@ -89,6 +100,7 @@ merge m:1 caseid year using "${pdata}/myearly.dta", keep(1 3) nogen
 
 
 *c. Merge time-varying information from around birth from hhmem.dta
+merge m:1 caseid year using "${pdata}/hhmem.dta", keep(1 3) nogen 
 
 
 * restore original year variable
@@ -101,12 +113,15 @@ for any numspptr relspptr marstat hgc hgcrev: rename X X_b
 
 
 *d. Rename the variables merged from hhmem.dta to *_b
+for any spousage spousgen spousgrade partage partgen partgrade: rename X X_b
 
 
 *e. Sort data by child ID and year
+sort caseid year
 
 
 *f. Save data as combi.dta in your procdata folder
+saveold "${pdata}/combi.dta", version(12) replace 
 
 
 *==============================================================================*
